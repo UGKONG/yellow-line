@@ -1,18 +1,16 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../src/pages/Home';
-import About from '../src/pages/About';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
-    component: Home
+    component: () => import('../src/pages/Home')
   },
   {
     path: '/About',
-    component: About
+    component: () => import('../src/pages/About')
   },
 ];
 
