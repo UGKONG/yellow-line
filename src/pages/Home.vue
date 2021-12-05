@@ -3,14 +3,19 @@
     <h1><span>Vue App</span>이 준비되었습니다.</h1>
     <article>
       <p>State: {{ number }}</p>
-      <button @click="() => $store.dispatch('setNumber', number + 1)">UP</button>
-      <button @click="() => $store.dispatch('setNumber', number - 1)">DOWN</button>
+      <v-btn @click="upDownFn(+1)">UP</v-btn>
+      <v-btn @click="upDownFn(-1)">DOWN</v-btn>
     </article>
   </section>
 </template>
 
 <script>
 export default {
+  methods: {
+    upDownFn (n) {
+      this.$store.dispatch('setNumber', this.number + n);
+    }
+  },
   computed: {
     number() {
       return this.$store.state.number;
@@ -32,10 +37,8 @@ section {
     font-size: 16px;
   }
   button {
-    background-color: var(--green);
-    color: #fff;
-    filter: grayscale(.2);
-
+    background-color: var(--green) !important;
+    color: #fff !important;
   }
 }
 </style>

@@ -4,7 +4,7 @@ const { VueLoaderPlugin } = require('vue-loader');
 module.exports = {
   mode: 'development',
   resolve: {
-    extensions: ['*', '.vue', '.js']
+    extensions: ['*', '.vue', '.js', '.ts']
   },
   entry: './src/index.js',
   output: {
@@ -14,12 +14,10 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.vue$/i, use: ['vue-loader']
-      },
-      {
+        test: /\.vue$/i, exclude: /node_modules/, use: ['vue-loader']
+      }, {
         test: /\.js$/i, exclude: /node_modules/, use: ['babel-loader']
-      },
-      {
+      }, {
         test: /\.(avi|mp4|wav|webm)$/i,
         use: [{
           loader: 'file-loader',
@@ -28,8 +26,7 @@ module.exports = {
             name: '[name].[ext]'
           }
         }]
-      },
-      {
+      }, {
         test: /\.(png|jpg|gif|bmp|svg)$/i,
         use: [{
           loader: 'file-loader',
@@ -38,11 +35,9 @@ module.exports = {
             name: '[name].[ext]'
           }
         }]
-      },
-      {
+      }, {
         test: /\.(c|sa|sc)ss$/i, use: ['style-loader', 'css-loader', 'sass-loader']
-      },
-      {
+      }, {
         test: /\.html$/i, use: ['html-loader']
       },
     ]
@@ -53,5 +48,8 @@ module.exports = {
       filename: 'index.html'
     }),
     new VueLoaderPlugin()
-  ]
+  ],
+  devServer: {
+    open: true
+  }
 }
