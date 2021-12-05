@@ -20,7 +20,7 @@ export default {
     number() {
       return this.$store.state.number;
     }
-  }
+  },
 }
 </script>
 
