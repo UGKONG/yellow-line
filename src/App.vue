@@ -3,14 +3,26 @@
     <Header />
     <v-icon>mdi-bullhorn-variant-outline</v-icon>
     <router-view />
+    <v-btn @click="alertFn">Alert!!</v-btn>
   </main>
 </template>
 
 <script>
 import Header from './components/Header';
+import { useAlert } from '../plugins/hook';
+
 export default {
   components: {
-    Header
+    Header,
+  },
+  created () {
+    this.alertFn();
+    
+  },
+  methods: {
+    alertFn () {
+      useAlert.info();
+    }
   }
 }
 </script>
