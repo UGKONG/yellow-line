@@ -526,6 +526,22 @@ export const useAlert = {
   },
   info () {
     this.init();
-    console.log('aa');
+    console.log('info');
+  },
+  success () {
+    this.init();
+    console.log('success');
+  },
+  warn () {
+    this.init();
+    console.log('warn');
+  },
+  error () {
+    this.init();
+    console.log('error');
+  },
+  other () {
+    this.init();
+    console.log('other');
   }
 }
