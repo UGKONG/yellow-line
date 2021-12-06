@@ -3,12 +3,11 @@
     <Header />
     <v-icon>mdi-bullhorn-variant-outline</v-icon>
     <router-view />
-    <v-btn @click="alertFn">Alert!!</v-btn>
   </main>
 </template>
 
 <script>
-import Header from './components/Header';
+import Header from './components/Common/Header';
 import { useAlert } from '../plugins/hook';
 
 export default {
@@ -16,13 +15,10 @@ export default {
     Header,
   },
   created () {
-    this.alertFn();
-    
+    useAlert.success('Vue', 'Vue App이 준비되었습니다.');
   },
   methods: {
-    alertFn () {
-      useAlert.info();
-    }
+    
   }
 }
 </script>

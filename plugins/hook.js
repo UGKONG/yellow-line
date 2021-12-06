@@ -423,11 +423,44 @@ export const useSearchText = (value = '') => {
 export const useAlert = {
   title: 'Example Title',
   text: 'Example Description',
+  skin: {
+    info: {
+      icon: 'fas fa-info-circle',
+      txt: '#f8f9fb',
+      bg: '#0c86eb',
+      progress: 'rgb(12,117,204)'
+    },
+    success: {
+      icon: 'fas fa-check-circle',
+      txt: '#f8f9fb',
+      bg: '#54ac3b',
+      progress: 'rgb(65 158 38)'
+    },
+    warn: {
+      icon: 'fas fa-exclamation-triangle',
+      txt: '#353a40',
+      bg: '#feb100',
+      progress: 'rgb(196 140 11)'
+    },
+    error: {
+      icon: 'fas fa-times',
+      txt: '#f8f9fb',
+      bg: '#ff395a',
+      progress: 'rgb(214 41 70)'
+    },
+    other: {
+      icon: 'fas fa-question',
+      txt: '#f8f9fb',
+      bg: '#464646',
+      progress: 'rgb(61 52 52)'
+    }
+  },
   style () {
     return `
       <style>
         section[alert] {
           position: fixed;
+          top: -100px;
           right: 10px;
           width: 400px;
           height: 70px;
@@ -435,7 +468,8 @@ export const useAlert = {
           border-radius: 4px;
           box-shadow: 0px 2px 6px #00000050;
           z-index: 99999999999999999999999999;
-          transition: .4s;
+          transition-duration: .4s;
+          overflow: hidden;
         }
         section[alert] > .wrap {
           position: relative;
@@ -445,7 +479,7 @@ export const useAlert = {
           justify-content: space-between;
           padding: 10px;
         }
-        section[alert] > .wrap > div > .icon {
+        section[alert] > .wrap > .icon {
           width: 50px;
           min-width: 50px;
           font-size: 34px;
@@ -453,16 +487,16 @@ export const useAlert = {
           align-items: center;
           justify-content: center;
         }
-        section[alert] > .wrap > div > .text {
+        section[alert] > .wrap > .context {
           padding: 0 10px;
           width: calc(100% - 64px);
         }
-        section[alert] > .wrap > div > .text > .title {
+        section[alert] > .wrap > .context > .title {
           font-weight: 500;
           letter-spacing: .5px;
           height: 50%;
         }
-        section[alert] > .wrap > div > .text > .text {
+        section[alert] > .wrap > .context > .text {
           font-size: 13px;
           height: 50%;
           display: flex;
@@ -482,8 +516,9 @@ export const useAlert = {
           background-color: #eeeeee50;
         }
         section[alert] .progress > div {
+          width: 0%;
           height: 100%;
-          transition: 2s;
+          transition: 2.5s;
         }
         section[alert] .xBtn {
           width: 14px;
@@ -503,45 +538,65 @@ export const useAlert = {
       </style>
     `;
   },
-  init () {
+  init (skin = this.skin.info, title = this.title, text = this.text) {
+    let count = document.querySelectorAll('section[alert]').length;
     let dom = document.createElement('section');
-        dom.setAttribute('alert', '');
-        dom.innerHTML = `
-          <div class="wrap">
-            <div class="icon"><i :class="returnIcon" /></div>
-            <div class="text">
-              <p class="title" v-text="returnInfo.title" />
-              <p class="text" v-text="returnInfo.text" />
-            </div>
-            <button class="xBtn" @click="alertClose"><i class="fas fa-times" /></button>
-            <article class="progress"><div :style="{
-              width: returnPercent,
-              backgroundColor: returnYN ? alertProgressColor : defaultColor,
-            }" />
-          </div>
-          <!-- Style -->
-          ${this.style()}
-        `;
+    dom.setAttribute('alert', '');
+    dom.style.backgroundColor = skin.bg;
+    dom.style.color = skin.txt;
+    dom.style.top = '-100px';
+    dom.innerHTML = `
+      <div class="wrap">
+        <div class="icon"><i class="${skin.icon}"></i></div>
+        <div class="context"><p class="title">${title}</p><p class="text">${text}</p></div>
+        <button class="xBtn"><i class="fas fa-times"></i></button>
+        <article class="progress"><div style="
+          background-color: ${skin.progress}
+        "></div>
+      </div>${this.style()}
+    `;
     document.body.appendChild(dom);
+    let xBtn = dom.children[0].children[2];
+    let progress = dom.children[0].children[3].children[0];
+    xBtn.onclick = () => this.close(dom);
+    window.setTimeout(() => {
+      dom.style.top = 80 * count + 10 + 'px';
+      progress.style.width = '100%';
+    }, 0);
+    this.autoClose(dom);
   },
-  info () {
-    this.init();
-    console.log('info');
+  info (title, text) {
+    this.init(this.skin.info, title, text);
   },
-  success () {
-    this.init();
-    console.log('success');
+  success (title, text) {
+    this.init(this.skin.success, title, text);
   },
-  warn () {
-    this.init();
-    console.log('warn');
+  warn (title, text) {
+    this.init(this.skin.warn, title, text);
   },
-  error () {
-    this.init();
-    console.log('error');
+  error (title, text) {
+    this.init(this.skin.error, title, text);
   },
-  other () {
-    this.init();
-    console.log('other');
-  }
+  other (title, text) {
+    this.init(this.skin.other, title, text);
+  },
+  close (el) {
+    el.style.top = '-100px';
+    el.style.transitionDelay = '0s';
+    window.setTimeout(() => el.remove(), 300);
+  },
+  autoClose (el) {
+    window.setTimeout(() => {
+      el.style.transitionDelay = '3s';
+      el.style.top = '-100px';
+      el.style.transitionDelay = '0s';
+    }, 3000);
+    window.setTimeout(() => el.remove(), 3300);
+  },
+}
+
+
+// 확인창 띄우기
+export const useConfirm = {
+  
 }
