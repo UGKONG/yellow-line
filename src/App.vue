@@ -8,18 +8,14 @@
 
 <script>
 import Header from './components/Common/Header';
-import { useAlert } from '../plugins/hook';
 
 export default {
   components: {
     Header,
   },
-  created () {
-    useAlert.success('Vue', 'Vue App이 준비되었습니다.');
-  },
-  methods: {
+  data: () => ({
     
-  }
+  }),
 }
 </script>
 
