@@ -1,7 +1,7 @@
 <template>
   <main>
     <Header />
-    <i :class="icon.stroke.v" />
+    <i :class="FontAwesome.stroke.v" />
     <router-view />
   </main>
 </template>
@@ -20,7 +20,7 @@ export default {
 
   },
   computed: {
-    icon () {
+    FontAwesome () {
       return this.$store.state.FontAwesome;
     }
   }
