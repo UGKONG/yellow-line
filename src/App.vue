@@ -21,7 +21,7 @@ export default {
   },
   computed: {
     icon () {
-      return this.$store.state.icon;
+      return this.$store.state.FontAwesome;
     }
   }
 }
