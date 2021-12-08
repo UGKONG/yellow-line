@@ -1,10 +1,12 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import icon from './icon';
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
+    icon,
     number: 0
   },
   mutations: {

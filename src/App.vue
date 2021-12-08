@@ -1,7 +1,7 @@
 <template>
   <main>
     <Header />
-    <v-icon>mdi-bullhorn-variant-outline</v-icon>
+    <i :class="icon.stroke.v" />
     <router-view />
   </main>
 </template>
@@ -14,8 +14,16 @@ export default {
     Header,
   },
   data: () => ({
-    
+
   }),
+  methods: {
+
+  },
+  computed: {
+    icon () {
+      return this.$store.state.icon;
+    }
+  }
 }
 </script>
 
@@ -30,22 +38,24 @@ main {
   left: 50%;
   transform: translate(-50%, -50%);
 
-  header {
-    margin-bottom: 50px;
-
-    a {
-      color: #bbb;
-      font-weight: 500;
-      &.active {
-        color: var(--green);
-      }
-    }
-
-    span {
-      display: inline-block;
-      margin: 0 10px;
-      color: #aaa;
-    }
+  @keyframes colorChange {
+    0% {color: var(--darkGray)}
+    10% {color: var(--red)}
+    20% {color: var(--blue)}
+    30% {color: var(--green)}
+    40% {color: var(--black)}
+    50% {color: var(--orange)}
+    60% {color: var(--yellow)}
+    70% {color: var(--purple)}
+    80% {color: var(--pink)}
+    90% {color: var(--navy)}
+    100%{color: var(--darkGray);}
+  }
+  i {
+    font-size: 40px;
+    margin-bottom: 10px;
+    transition: .2s;
+    animation: colorChange infinite 10s;
   }
 }
 </style>
