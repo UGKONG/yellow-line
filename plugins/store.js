@@ -17,4 +17,10 @@ const store = new Vuex.Store({
   }
 });
 
+export const eventBus = new Vue({
+  methods: {
+
+  }
+});
+
 export default store;
