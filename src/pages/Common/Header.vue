@@ -7,20 +7,25 @@
 </template>
 
 <script>
-export default {
-
-}
+export default {}
 </script>
 
 <style lang="scss" scoped>
+@import '@index.scss';
 header {
   margin-bottom: 50px;
 
   a {
-    color: #bbb;
+    color: $whiteGray;
     font-weight: 500;
+    &:hover {
+      color: $whiteGrayHover;
+    }
+    &:active {
+      color: $whiteGrayActive;
+    }
     &.active {
-      color: var(--green);
+      color: $green;
     }
   }
 

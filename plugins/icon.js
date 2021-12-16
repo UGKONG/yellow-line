@@ -44,6 +44,12 @@ export default {
         down: 'fas fa-sort-alpha-up',
       }
     },
+    history: 'fas fa-history',
+    star: 'far fa-star',
+    question: {
+      default: 'fas fa-question',
+      circle: 'far fa-question-circle'
+    }
   },
   fill: {
     user: 'fas fa-user',
@@ -64,5 +70,7 @@ export default {
     warn: 'fas fa-exclamation-triangle',
     folder: 'fas fa-folder',
     pointer: 'fas fa-mouse-pointer',
+    star: 'fas fa-star',
+    question: 'fas fa-question-circle',
   }
 }

@@ -4,7 +4,15 @@ const { VueLoaderPlugin } = require('vue-loader');
 module.exports = {
   mode: 'development',
   resolve: {
-    extensions: ['*', '.vue', '.js', '.ts']
+    extensions: ['*', '.vue', '.js', '.ts'],
+    alias: {
+      '@': __dirname + '/src/',
+      '@plugins': __dirname + '/plugins/',
+      '@public': __dirname + '/public/',
+      '@pages': __dirname + '/src/pages/',
+      '@index.scss': __dirname + '/public/index.scss',
+      '@hook': __dirname + '/plugins/hook.js',
+    }
   },
   entry: './src/index.js',
   output: {
@@ -22,7 +30,7 @@ module.exports = {
         use: [{
           loader: 'file-loader',
           options: {
-            outputPath: './public/videos',
+            outputPath: './videos',
             name: '[name].[ext]'
           }
         }]
@@ -31,7 +39,7 @@ module.exports = {
         use: [{
           loader: 'file-loader',
           options: {
-            outputPath: './public/images',
+            outputPath: './images',
             name: '[name].[ext]'
           }
         }]

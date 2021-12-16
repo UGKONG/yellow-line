@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import FontAwesome from './icon';
+import Icon from './Icon';
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    FontAwesome,
+    Icon,
     number: 0
   },
   mutations: {

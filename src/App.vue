@@ -1,55 +1,40 @@
 <template>
   <main>
     <Header />
-    <i :class="FontAwesome.stroke.v" />
-    <router-view />
+    <i :class="$store.state.Icon.stroke.v" />
+    <transition name="slide-y-reverse-transition" mode="out-in">
+      <router-view />
+    </transition>
   </main>
 </template>
 
 <script>
-import Header from './components/Common/Header';
-
 export default {
   components: {
-    Header,
+    Header: () => import('@pages/Common/Header'),
   },
-  data: () => ({
-
-  }),
-  methods: {
-
-  },
-  computed: {
-    FontAwesome () {
-      return this.$store.state.FontAwesome;
-    }
-  }
 }
 </script>
 
 <style lang="scss" scoped>
+@import '@index.scss';
 main {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   flex-flow: column;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  @include flex-center;
+  @include absolute-center;
 
   @keyframes colorChange {
-    0% {color: var(--darkGray)}
-    10% {color: var(--red)}
-    20% {color: var(--blue)}
-    30% {color: var(--green)}
-    40% {color: var(--black)}
-    50% {color: var(--orange)}
-    60% {color: var(--yellow)}
-    70% {color: var(--purple)}
-    80% {color: var(--pink)}
-    90% {color: var(--navy)}
-    100%{color: var(--darkGray);}
+    0% {color: $darkGray}
+    10% {color: $red}
+    20% {color: $blue}
+    30% {color: $green}
+    40% {color: $black}
+    50% {color: $orange}
+    60% {color: $yellow}
+    70% {color: $purple}
+    80% {color: $pink}
+    90% {color: $navy}
+    100%{color: $darkGray;}
   }
   i {
     font-size: 40px;
