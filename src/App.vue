@@ -2,7 +2,7 @@
   <main>
     <Header />
     <i :class="$store.state.Icon.stroke.v" />
-    <transition name="slide-y-reverse-transition" mode="out-in">
+    <transition name="scale-transition" mode="out-in">
       <router-view />
     </transition>
   </main>
